@@ -1,0 +1,1 @@
+Almost 100% copied from spaghettimod, default LuaRef
