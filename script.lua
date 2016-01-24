@@ -96,11 +96,9 @@ local hooks = {
       end
     end
   end,
-  --[[PING = function() if pcount then return end; pcount = true; for k,i in pairs({""}) do Client:Send("JOIN #" .. i) end end,]]
+  ["396"] = function() if pcount then return end; pcount = true; for k,i in pairs({"sauercom", "novi", "vaq", "rC", "impressivesquad"}) do Client:Send("JOIN #" .. i) end end,
   CTCP = function(self, msg) Client:Send("NOTICE " .. msg.Prefix.Nick:c_str() .. " :\001VERSION C++ Lua bot by gear4 \001") end,
-  JOIN = function(self, msg) if msg.Prefix.Nick:c_str() == "robottie" then print(msg.Parameters:at(0):c_str()); 
-channels[#channels + 1] = 
-msg.Parameters:at(0):c_str() end end
+  JOIN = function(self, msg) if msg.Prefix.Nick:c_str() == "robottie" then channels[#channels + 1] = msg.Parameters:at(0):c_str() end end
 }
 for h,c in pairs(hooks) do
   Client:Hook(h, c)
