@@ -91,8 +91,6 @@ local hooks = {
 
       if is_valid_command(cmd) then
         commands[cmd](msg.Prefix, msg.Parameters:at(0):c_str(), table.unpack(args))
-      else
-        Client:Send("PRIVMSG " .. msg.Parameters:at(0):c_str() .." :red<Invalid command>")
       end
     end
   end,
