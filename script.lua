@@ -57,7 +57,7 @@ end
 local channels = {}
 local sendType = function(t,n,s,...)
   local msg = "requests a " .. t
-  if s and s ~= "" then msg = msg .. " at " .. s end
+  if s and s ~= "" then msg = msg .. " at " .. Tracker.GetSeggestion(s) end
   if #{...} > 0 and ({...})[1] ~= "" then msg = msg .. " (" .. table.concat({...}) .. ")" end
   for i,c in pairs(channels) do
     Client:Send("PRIVMSG " .. c .. " :" .. n .. " " .. msg .. "; join #sauercom to respond")
@@ -91,8 +91,6 @@ local hooks = {
 
       if is_valid_command(cmd) then
         commands[cmd](msg.Prefix, msg.Parameters:at(0):c_str(), table.unpack(args))
-      else
-        Client:Send("PRIVMSG " .. msg.Parameters:at(0):c_str() .." :red<Invalid command>")
       end
     end
   end,
