@@ -4,6 +4,7 @@
 #include <map>
 #include <algorithm>
 #include "client.h"
+#include "tracker.h"
 
 static lua_State * L = NULL;
 lua_State *get_ls() {return L;}
@@ -48,7 +49,9 @@ int main(int argc, char* argv[]) {
         .addData("User", &irccmdprefix::user)
         .addData("Host", &irccmdprefix::host)
       .endClass()
-    .endNamespace();
+    .endNamespace()
+    .beginNamespace("Tracker")
+	  .addFunction("GetSeggestion", &tracker::getSuggestion);
   
   int s = luaL_loadfile(L, "script.lua");
 

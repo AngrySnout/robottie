@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-c -g -std=c++11 -ILuaBridge
-LDFLAGS=-lpthread -L/usr/lib -llua
+LDFLAGS=-lpthread -L/usr/lib -llua -ldl -lcurl
 SOURCE_DIR=src
 SOURCE_FILES=$(wildcard $(SOURCE_DIR)/*.cpp)
 OBJECTS=$(SOURCE_FILES:.cpp=.o)
