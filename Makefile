@@ -1,4 +1,12 @@
+PKGCONFIG:= $(shell which $(PLATFORM)-pkg-config 2>/dev/null || echo pkg-config)
 PLATFORM:= $(shell ./config.guess)
+LUA:= $(shell for i in {jit,"",5.3,53,5.2,52,5.1,51}; do $(PKGCONFIG) --exists lua$$i && echo $$i && exit; done; echo error)
+ifeq (error,$(LUAVERSION))
+$(error Cannot determine LUAVERSION, please provide on command line)
+endif
+$(info Selected LUAVERSION=$(LUAVERSION))
+LUACFLAGS:=$(shell $(PKGCONFIG) --cflags lua$(LUAVERSION))
+LUALDFLAGS:=$(shell $(PKGCONFIG) --libs lua$(LUAVERSION))
 
 CC:=g++
 CFLAGS:=-c -g -std=c++11 -ILuaBridge
