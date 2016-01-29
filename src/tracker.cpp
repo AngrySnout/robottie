@@ -14,15 +14,15 @@ namespace tracker {
     std::string res;
     curl = curl_easy_init();
     if(curl) {
-	  std::string url = "http://uk.cube2.org/findserver/";
-	  url += query;
-	  curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-	  curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
-	  curl_easy_setopt(curl, CURLOPT_WRITEDATA, &res);
-	  resCode = curl_easy_perform(curl);
-	  curl_easy_cleanup(curl);
-	  if (resCode == CURLE_OK) return res;
+      std::string url = "http://uk.cube2.org/findserver/";
+      url += query;
+      curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+      curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
+      curl_easy_setopt(curl, CURLOPT_WRITEDATA, &res);
+      resCode = curl_easy_perform(curl);
+      curl_easy_cleanup(curl);
+      if (resCode == CURLE_OK) return res;
     }
-	return query;
+    return query;
   }
 }
