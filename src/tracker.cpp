@@ -14,7 +14,7 @@ namespace tracker {
     std::string res;
     curl = curl_easy_init();
     if(curl) {
-      std::string url = "http://uk.cube2.org/findserver/";
+      std::string url = "http://sauertracker.net/findserver/";
       url += query;
       curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
       curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
